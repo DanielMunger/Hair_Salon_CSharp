@@ -35,7 +35,7 @@ namespace HairSalon.Test
       List<Client> savedClient = Client.GetAll();
       List<Client> testClient = new List<Client> {newClient};
 
-      Assert.Equal(savedClient, newClient);
+      Assert.Equal(savedClient, testClient);
     }
   }
 }
