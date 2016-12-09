@@ -114,6 +114,19 @@ namespace HairSalon.Objects
       }
     }
 
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("DELETE FROM stylists;", conn);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      if(conn!=null)
+      {
+        conn.Close();
+      }
+    }
+
   }
 
 }

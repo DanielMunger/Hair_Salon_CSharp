@@ -8,11 +8,15 @@ using HairSalon.Objects;
 
 namespace HairSalon.Test
 {
-  public class StylistTest
+  public class StylistTest : IDisposable
   {
     public StylistTest()
     {
       DBConfiguration.ConnectionString = "Data Source=DESKTOP-GC3DC7B\\SQLEXPRESS;Initial Catalog=hair_salon_test;Integrated Security=SSPI;";
+    }
+    public void Dispose()
+    {
+      Stylist.DeleteAll();
     }
     [Fact]
     public void Test_StylistTableEmpty_True()
@@ -41,7 +45,7 @@ namespace HairSalon.Test
       Stylist newStylist = new Stylist("Jim","9am-5pm","Monday-Friday");
       newStylist.Save();
       //Act
-      Stylist savedStylist = Stylist.GetAll()[0]
+      Stylist savedStylist = Stylist.GetAll()[0];
       int result = savedStylist.GetId();
       int expected = newStylist.GetId();
 
