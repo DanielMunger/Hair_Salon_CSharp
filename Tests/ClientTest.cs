@@ -7,11 +7,15 @@ using HairSalon.Objects;
 
 namespace HairSalon.Test
 {
-  public class ClientTest
+  public class ClientTest : IDisposable
   {
     public ClientTest()
     {
       DBConfiguration.ConnectionString = "Data Source=DESKTOP-GC3DC7B\\SQLEXPRESS;Initial Catalog=hair_salon_test;Integrated Security=SSPI;";
+    }
+    public void Dispose()
+    {
+      Client.DeleteAll();
     }
     [Fact]
     public void Test_DatabaseEmpty()
