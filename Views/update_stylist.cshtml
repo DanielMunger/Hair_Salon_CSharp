@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>New Stylist</title>
+  </head>
+  <body>
+    <h1>Add a new Stylist</h1>
+    <form action="/stylists/update/@Model.GetId()" method="post">
+      <label for="new-stylist-name">Stylist Name</label>
+      <input type="text" name="new-stylist-name" id="new-stylist-name">
+      <label for="new-stylist-work-hours">Stylist Work Hours</label>
+      <input type="text" name="new-stylist-work-hours" id="new-stylist-work-hours">
+      <label for="new-stylist-schedule">Stylist Schedule</label>
+      <input type="text" name="new-stylist-schedule" id="new-stylist-schedule">
+      <button type="submit">Update Stylist</button>
+    </form>
+  </body>
+</html>

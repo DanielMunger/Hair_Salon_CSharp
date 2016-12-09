@@ -42,6 +42,18 @@ namespace HairSalon
         newClient.Save();
         return View["index.cshtml"];
       } ;
+      Get["/stylists/update/{id}"] = parameters => {
+        Stylist selectedStylist = Stylist.Find(parameters.id);
+        return View["update_stylist.cshtml", selectedStylist];
+      };
+      Post["/stylists/update/{id}"] = parameters => {
+        Stylist selectedStylist = Stylist.Find(parameters.id);
+        string newName = Request.Form["new-stylist-name"];
+        string newHours = Request.Form["new-stylist-work-hours"];
+        string newSchedule = Request.Form["new-stylist-schedule"];
+        selectedStylist.Update(newName, newHours, newSchedule);
+        return View["index.cshtml"];
+      };
     }
   }
 }
