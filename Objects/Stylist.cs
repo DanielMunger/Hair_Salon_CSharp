@@ -83,6 +83,37 @@ namespace HairSalon.Objects
       return allStylists;
     }
 
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO stylists (stylist_name, work_hours, days_of_week) OUTPUT INSERTED.id VALUES (@StylistName, @WorkHours, @WorkSchedule);", conn);
+
+      SqlParameter stylistNameParameter = new SqlParameter("@StylistName", this.GetName());
+      cmd.Parameters.Add(stylistNameParameter);
+
+      SqlParameter workHoursParameter = new SqlParameter("@WorkHours", this.GetWorkHours());
+      cmd.Parameters.Add(workHoursParameter);
+
+      SqlParameter WorkScheduleParameter = new SqlParameter("@WorkSchedule", this.GetWorkSchedule());
+      cmd.Parameters.Add(WorkScheduleParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+      while(rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+      if(rdr!=null)
+      {
+        rdr.Close();
+      }
+      if(conn!=null)
+      {
+        conn.Close();
+      }
+    }
+
   }
 
 }
