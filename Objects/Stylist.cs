@@ -149,6 +149,41 @@ namespace HairSalon.Objects
       return foundStylist;
     }
 
+    public void Update(string newName, string newHours, string newSchedule)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("UPDATE stylists SET stylist_name = @NewName, work_hours = @NewWorkHours, days_of_week = @NewSchedule OUTPUT INSERTED.stylist_name, INSERTED.work_hours, INSERTED.days_of_week WHERE id = @StylistId;", conn);
+
+      SqlParameter stylistIdParameter = new SqlParameter("@StylistId", this.GetId());
+      cmd.Parameters.Add(stylistIdParameter);
+
+      SqlParameter stylistNameParameter = new SqlParameter("@NewName", newName);
+      cmd.Parameters.Add(stylistNameParameter);
+
+      SqlParameter workHoursParameter = new SqlParameter("@NewWorkHours", newHours);
+      cmd.Parameters.Add(workHoursParameter);
+
+      SqlParameter scheduleParameter = new SqlParameter("@NewSchedule", newSchedule);
+      cmd.Parameters.Add(scheduleParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._stylistName = rdr.GetString(0);
+        this._workHours = rdr.GetString(1);
+        this._workSchedule = rdr.GetString(2);
+      }
+      if(rdr!=null)
+      {
+        rdr.Close();
+      }
+      if(conn!=null)
+      {
+        conn.Close();
+      }
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();

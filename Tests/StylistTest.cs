@@ -69,8 +69,8 @@ namespace HairSalon.Test
       //Arrange
       Stylist newStylist = new Stylist("Jimbo","12pm-2pm","Tuesdays");
       newStylist.Save();
-      string newHours = "11am-3pm"
-      newStylist.Update("Jimbo",newHours,"Tuesdays")
+      string newHours = "11am-3pm";
+      newStylist.Update("Jimbo",newHours,"Tuesdays");
       //Act
       string result = newStylist.GetWorkHours();
       //Assert
