@@ -76,16 +76,25 @@ namespace HairSalon.Test
       //Assert
       Assert.Equal(result, newHours);
     }
-    // [Fact]
-    // public void Test_Delete_DeletesInstanceFromDatabase()
-    // {
-    //   //Arrange
-    //   Stylist newStylist1 = new Stylist("Jimbo Fisher","9am-2pm","Wednesdays-Tuesdays");
-    //   newStylist1.Save();
-    //   Stylist newStylist2 = new Stylist("Jimbo","12pm-2pm","Tuesdays");
-    //   newStylist2.Save();
-    //   //Act
-    //   //Assert
-    // }
+    [Fact]
+    public void Test_Delete_DeletesInstanceFromDatabase()
+    {
+      //Arrange
+      Stylist newStylist1 = new Stylist("Jimbo Fisher","9am-2pm","Wednesdays-Tuesdays");
+      newStylist1.Save();
+      Stylist newStylist2 = new Stylist("Jimbo","12pm-2pm","Tuesdays");
+      newStylist2.Save();
+
+      Client newClient1 = new Client("Mary", newStylist1.GetId());
+      newClient1.Save();
+      Client newClient2 = new Client("Susan", newStylist2.GetId());
+      newClient2.Save();
+      //Act
+      newStylist1.Delete();
+      List<Stylist> resultStylists = Stylist.GetAll();
+      List<Stylist> testStylists = new List<Stylist> {newStylist2};
+      //Assert
+      Assert.Equal(resultStylists, testStylists);
+    }
   }
 }
