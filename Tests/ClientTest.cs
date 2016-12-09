@@ -19,5 +19,13 @@ namespace HairSalon.Test
       int result = Client.GetAll().Count;
       Assert.Equal(0,result);
     }
+    [Fact]
+    public void Test_EqualOveride()
+    {
+      Client firstClient = new Client("Bob", 1);
+      Client secondClient = new Client("Bob", 1);
+
+      Assert.Equal(firstClient, secondClient);
+    }
   }
 }
