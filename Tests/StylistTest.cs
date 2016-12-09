@@ -34,5 +34,19 @@ namespace HairSalon.Test
       //Assert
       Assert.Equal(testList, result);
     }
+    [Fact]
+    public void Test_AssignsIdToObject()
+    {
+      //Arrange
+      Stylist newStylist = new Stylist("Jim","9am-5pm","Monday-Friday");
+      newStylist.Save();
+      //Act
+      Stylist savedStylist = Stylist.GetAll()[0]
+      int result = savedStylist.GetId();
+      int expected = newStylist.GetId();
+
+      //Assert
+      Assert.Equal(result, expected);
+    }
   }
 }
