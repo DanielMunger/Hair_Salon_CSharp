@@ -22,5 +22,17 @@ namespace HairSalon.Test
       //Assert
       Assert.Equal(0,result);
     }
+    [Fact]
+    public void Test_SavesStylistToDatabase()
+    {
+      //Arrange
+      Stylist newStylist = new Stylist("Jim","9am-5pm","Monday-Friday");
+      newStylist.Save();
+      //Act
+      List<Stylist> result = Stylist.GetAll();
+      List<Stylist> testList = new List<Stylist>{newStylist};
+      //Assert
+      Assert.Equal(testList, result);
+    }
   }
 }
