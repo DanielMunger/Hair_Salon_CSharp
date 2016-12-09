@@ -2,9 +2,20 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Add a new Client</title>
   </head>
   <body>
-
+    <form action="/clients/new" method="post">
+      <label for="client-name">Client Name:</label>
+      <input type="text" name="client-name" id ="client-name">
+      <select name="stylist-id">
+        @foreach(var stylist in @Model)
+        {
+          <option value="@stylist.GetId()">@stylist.GetName()</option>
+        }
+      </select>
+      <button type="submit">Add Client</button>
+    </form>
+    <p><a href="/">Home Page</a></p>
   </body>
 </html>

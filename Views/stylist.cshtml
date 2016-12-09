@@ -5,16 +5,19 @@
     <title></title>
   </head>
   <body>
-    <ul>
       <h3>@Model.GetName()</h3>
       <ul>
         <li>@Model.GetWorkHours()</li>
         <li>@Model.GetWorkSchedule()</li>
-        @foreach(var client in @Model.GetClients())
-        {
-          <li>client.GetClientName()</li>
-        }
       </ul>
+      @if(Model.GetClients().Count >0)
+      {
+        @foreach(var client in Model.GetClients())
+        {
+          <p>@client.GetClientName()</p>
+        }
+      }
     </ul>
+      <a href="/clients/new">Add Client</a>
   </body>
 </html>

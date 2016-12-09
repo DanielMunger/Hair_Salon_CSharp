@@ -31,6 +31,17 @@ namespace HairSalon
         var SelectedStylist = Stylist.Find(parameters.id);
         return View["stylist.cshtml", SelectedStylist];
       };
+      Get["/clients/new"] = _ => {
+        List<Stylist> allStylists = Stylist.GetAll();
+        return View["client_form.cshtml", allStylists];
+      };
+      Post["/clients/new"] = _ => {
+        string clientName = Request.Form["client-name"];
+        int stylistId = Request.Form["stylist-id"];
+        Client newClient = new Client(clientName, stylistId);
+        newClient.Save();
+        return View["index.cshtml"];
+      } ;
     }
   }
 }
