@@ -5,6 +5,16 @@
     <title></title>
   </head>
   <body>
-
+    <ul>
+      <h3>@Model.GetName()</h3>
+      <ul>
+        <li>@Model.GetWorkHours()</li>
+        <li>@Model.GetWorkSchedule()</li>
+        @foreach(var client in @Model.GetClients())
+        {
+          <li>client.GetClientName()</li>
+        }
+      </ul>
+    </ul>
   </body>
 </html>
