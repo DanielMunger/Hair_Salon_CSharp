@@ -16,6 +16,21 @@ namespace HairSalon.Objects
       _clientName = ClientName;
       _stylistId = StylistId;
     }
+    public override bool Equals(Object otherClient)
+    {
+      if(!(otherClient is Client))
+      {
+        return false;
+      }
+      else
+      {
+        Client newClient = (Client) otherClient;
+        bool idEquality = (this.GetId() == newClient.GetId());
+        bool nameEquality = (this.GetClientName() == newClient.GetClientName());
+        bool stylistIdEquality = (this.GetStylistId() == newClient.GetStylistId());
+        return(idEquality && nameEquality && stylistIdEquality);
+      }
+    }
     public int GetId()
     {
       return _id;
