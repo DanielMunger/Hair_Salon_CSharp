@@ -14,11 +14,11 @@
       {
         @foreach(var client in Model.GetClients())
         {
-          <p>@client.GetClientName()</p>
+          <p><a href="/client/@client.GetId()">@client.GetClientName()</a></p>
         }
       }
     </ul>
-      
+
       <a href="/clients/new">Add Client</a></br>
       <a href="/">Home Page</a>
   </body>

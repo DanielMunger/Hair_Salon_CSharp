@@ -141,6 +141,7 @@ namespace HairSalon.Objects
       SqlCommand cmd = new SqlCommand("UPDATE clients SET client_name = @NewClientName OUTPUT INSERTEd.client_name WHERE id = @ClientId;", conn);
       SqlParameter clientNameParameter = new SqlParameter("@NewClientName", newName);
       cmd.Parameters.Add(clientNameParameter);
+      
       SqlParameter clientIdParameter = new SqlParameter("@ClientId", this.GetId());
       cmd.Parameters.Add(clientIdParameter);
       SqlDataReader rdr = cmd.ExecuteReader();
