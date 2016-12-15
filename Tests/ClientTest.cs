@@ -72,7 +72,17 @@ namespace HairSalon.Test
       string expected = newClient.GetClientName();
 
       Assert.Equal(expected, newName);
+    }
+    [Fact]
+    public void Delete_DeletesInstanceFromDB_True()
+    {
+      Client newClient = new Client("Daniel", 1);
+      newClient.Save();
+      newClient.Delete();
+      List<Client> expected = new List<Client>{};
+      List<Client> result = Client.GetAll();
 
+      Assert.Equal(expected, result);
     }
   }
 }
