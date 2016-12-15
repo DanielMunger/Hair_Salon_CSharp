@@ -25,28 +25,42 @@ _{This application is hosted on a local server and uses a local database to stor
 
 ## Setup/Installation Requirements
 
-  * _Clone this program from my GitHub_
+  * _Clone this program from my GitHub: www.github.com/solgo/Hair_Salon_CSharp_
   * _Run 'dnu restore' to create a project.lock.json file_
-  ** Using MSSM
-  * Instructions in SQL:
-  * CREATE DATABASE hair_salon;
-  *  GO
-  * USE hair_salon;
-  * GO
-  * CREATE TABLE stylists
-  * (id INT IDENTITY(1,1), stylist_name VARCHAR(50),
-  * work_hours VARCHAR(50),
-  * days_of_week VARCHAR(100));
-  * CREATE TABLE clients
-  * (id INT IDENTITY(1,1),
-  * client_name VARCHAR(50),
-  * stylist_id INT);
-  * GO
+  *
+  * Database creation Instructions: (see below)
+  * _Using local server_
+  * _Replace 'DESKTOP-GC3DC7B\\SQLEXPRESS' with local server name in Starup.cs file._
+  * _Use the name of your newly created database in 'Catalog'_
+  * _You should now have: ConnectionString = "Data Source=DESKTOP-GC3DC7B\\SQLEXPRESS;Initial Catalog=hair_salon;Integrated Security=SSPI";_
+  * Test Instructions: (see below)
   * _Run 'dnx kestrel' to start server_
   * _Open the webpage 'localhost:5004'_
   * _Follow website instructions_
 
+## Database Setup Instructions
+_Using Microsoft SQL Sever Manager or SQLCMD_ Enter in the following commands.
+* CREATE DATABASE hair_salon;
+* GO
+* USE hair_salon;
+* GO
+* CREATE TABLE stylists
+* (id INT IDENTITY(1,1),
+* stylist_name VARCHAR(50),
+* work_hours VARCHAR(50),
+* days_of_week VARCHAR(100));
+* CREATE TABLE clients
+* (id INT IDENTITY(1,1),
+* client_name VARCHAR(50),
+* stylist_id INT);
+* GO
 
+## Testing Instructions
+* Follow along with Database Setup Instructions.
+* In Microsoft SQL Server Manager, right click on the newly created database. Hover over 'Tasks'. Select 'Back Up', to backup your databse. After that, right click the database, hover over 'Tasks', and select 'Restore'. Change the restored database name to 'hair_salon_test' and click enter.
+* Replace 'DESKTOP-GC3DC7B\\SQLEXPRESS' in Test methods.
+* Replace 'hair_salon' after 'Catalog = ' with 'hair_salon_test'
+* Return to Powershell and run 'dnx test' to run tests.
 ## Known Bugs
 
 _{There are no known bugs at this time.}_
