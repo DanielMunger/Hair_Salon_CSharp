@@ -16,6 +16,7 @@ namespace HairSalon.Test
     public void Dispose()
     {
       Client.DeleteAll();
+      Stylist.DeleteAll();
     }
     [Fact]
     public void Test_DatabaseEmpty()
@@ -60,6 +61,18 @@ namespace HairSalon.Test
       Client foundClient = Client.Find(newClient.GetId());
 
       Assert.Equal(newClient, foundClient);
+    }
+    [Fact]
+    public void Update_UpdatesClientinDB_True()
+    {
+      Client newClient = new Client("Barb", 1);
+      newClient.Save();
+      string newName = "Barbara";
+      newClient.Update(newName);
+      string expected = newClient.GetClientName();
+
+      Assert.Equal(expected, newName);
+
     }
   }
 }

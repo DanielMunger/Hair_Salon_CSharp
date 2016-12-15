@@ -17,6 +17,7 @@ namespace HairSalon.Test
     public void Dispose()
     {
       Stylist.DeleteAll();
+      Client.DeleteAll();
     }
     [Fact]
     public void Test_StylistTableEmpty_True()
